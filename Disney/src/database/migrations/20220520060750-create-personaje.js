@@ -28,7 +28,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      pelicula_serie: {
+      pelicula_serie_asociada: {
         type: Sequelize.STRING,
         allowNull: false
       },
