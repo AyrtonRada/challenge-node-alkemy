@@ -9,10 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       personaje_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       pelicula_serie_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

@@ -11,6 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      pelicula_serie.belongsTo(models.genero, {
+          as: 'generos',
+          foreignKey: 'genero_id'
+      })
+
+      pelicula_serie.belongsToMany(models.personaje, {
+          as: 'personajes',
+          through: 'personaje_detail',
+          foreignKey: 'pelicula_serie_id',
+          otherKey: 'personaje_id'
+      })
     }
   }
   pelicula_serie.init({
