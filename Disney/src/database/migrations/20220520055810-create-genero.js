@@ -32,5 +32,6 @@ module.exports = {
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('generos');
+    generos.sync({ force: true })
   }
 };

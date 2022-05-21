@@ -29,7 +29,11 @@ module.exports = {
       },
       genero_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'genero',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

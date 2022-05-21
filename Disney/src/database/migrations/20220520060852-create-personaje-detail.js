@@ -10,11 +10,19 @@ module.exports = {
       },
       personaje_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'personaje',
+          key: 'id'
+        }
       },
       pelicula_serie_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'pelicula_serie',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
