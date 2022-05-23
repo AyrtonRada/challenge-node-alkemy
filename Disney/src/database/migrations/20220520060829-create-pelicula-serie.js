@@ -9,7 +9,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       imagen: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
       },
       titulo: {
         type: Sequelize.STRING,
@@ -25,7 +27,8 @@ module.exports = {
         allowNull: false
       },
       personajesAsociados: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       genero_id: {
         type: Sequelize.INTEGER,
