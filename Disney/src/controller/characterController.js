@@ -11,6 +11,15 @@ const characterController = {
             res.json(personaje)
          })
     },
+     /*********DETALLES DE LOS PERSONAJES *********/
+
+    charactersDetail: async (req,res) => {
+        await db.Personaje.findAll()
+        .then((respuesta) => {
+            res.json(respuesta)
+        })
+    },
+
      /*********CREAR PERSONAJE *********/
     charactersCreate: async(req,res) => {
         //validacion de existencia de los datos para crear personaje

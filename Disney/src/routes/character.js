@@ -7,6 +7,7 @@ const verificarToken = require('../middleware/authTokenMiddleware')
 
 //localhost:3000/characters
 router.get('/', characterController.characters)
+router.get('/detail', characterController.charactersDetail)
 router.post('/create', uploadFile.single('imagen'), validacionesCharacter, characterController.charactersCreate)
 router.put('/update/:id', uploadFile.single('imagen'), validacionesCharacter, characterController.charactersUpdate)
 router.delete('/delete/:id', characterController.charactersDestroy)
