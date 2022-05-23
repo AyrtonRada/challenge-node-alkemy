@@ -2,7 +2,7 @@ const {body} = require('express-validator')
 const path = require('path')
 
 const validacionesCharacter = [
-    body('imagen').custom(({req})=>{
+    body('imagen').custom((value, {req})=>{
         let file = req.file
         let extensionesAceptadas = ['.jpg', '.png', '.jpeg']
         if(!file){

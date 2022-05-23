@@ -20,8 +20,7 @@ module.exports = {
       },
       edad: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        unique: true
+        allowNull: false
       },
       peso: {
         type: Sequelize.INTEGER
