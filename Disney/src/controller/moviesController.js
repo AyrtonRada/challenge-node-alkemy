@@ -9,7 +9,15 @@ const movieController = {
         .then((personaje) => {
             res.json(personaje)
         })
-    }
+    },
+    /*********DETALLES DE LAS PELICULAS/SERIES *********/
+    moviesDetail: async (req,res) => {
+        await db.Pelicula_serie.findAll()
+        .then((respuesta) => {
+            res.json(respuesta)
+        })
+    },
+
 
 }
 

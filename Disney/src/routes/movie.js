@@ -5,5 +5,6 @@ const movieController = require('../controller/moviesController')
 
 //localhost:3000/movies
 router.get('/', movieController.movies)
+router.get('/detail', movieController.moviesDetail)
 
 module.exports = router
