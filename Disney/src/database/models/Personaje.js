@@ -13,18 +13,35 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Personaje.belongsToMany(models.Pelicula_serie, {
           as:'pelicula_serie',
-          through: 'personaje_detail',
+          through: 'personaje_details',
           foreignKey: 'pelicula_serie_asociada',
+          otherKey: 'personajeAsociada',
+          timestamps: true
       })
     }
   }
   Personaje.init({
-    imagen: DataTypes.STRING,
-    nombre: DataTypes.STRING,
-    edad: DataTypes.INTEGER,
-    peso: DataTypes.INTEGER,
-    historia: DataTypes.STRING
-  }, {
+    imagen: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    edad: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    peso: {
+      type: DataTypes.INTEGER
+    },
+    historia: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }}, {
     sequelize,
     modelName: 'Personaje',
   });

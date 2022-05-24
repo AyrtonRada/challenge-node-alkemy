@@ -13,18 +13,23 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Personaje_detail.belongsTo(models.Pelicula_serie,{
         as: 'pelicula_serie',
-        foreignKey: 'pelicula_serie_asociada'
+        foreignKey: 'personajeAsociada'
       });
       Personaje_detail.belongsTo(models.Personaje, {
         as:'personaje',
-        foreignKey:'personajeAsociada'
+        foreignKey:'pelicula_serie_asociada'
       })
     }
   }
   Personaje_detail.init({
-    pelicula_serie_asociada: DataTypes.INTEGER,
-    personajeAsociada: DataTypes.INTEGER
-  }, {
+    pelicula_serie_asociada: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    personajeAsociada: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    }}, {
     sequelize,
     modelName: 'Personaje_detail',
   });

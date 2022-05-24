@@ -80,7 +80,7 @@ const characterController = {
         })
     },
 
-    /*********ELIMINAR PERSONAJE *********/
+    /*********FILTRAR PERSONAJE *********/
     search: async(req,res) => {
         let {name, age, weight, movie} = req.query
         await db.Personaje.findAll({

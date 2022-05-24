@@ -11,16 +11,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Genero.hasMany(models.Pelicula_serie,{
+      Genero.belongsTo(models.Pelicula_serie,{
           as: 'peliculas',
           foreignKey: 'pelicula_serie_asociada'
       })
     }
   }
   Genero.init({
-    nombre: DataTypes.STRING,
-    imagen: DataTypes.STRING,
-    pelicula_serie_asociada: DataTypes.INTEGER
+    nombre: {type: DataTypes.STRING,
+            allowNull: false,
+            unique: true},
+    imagen: { type: DataTypes.STRING,
+            allowNull: false},
+    pelicula_serie_asociada: {type: DataTypes.INTEGER,
+            allowNull: false}
   }, {
     sequelize,
     modelName: 'Genero',

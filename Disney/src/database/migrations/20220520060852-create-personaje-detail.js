@@ -11,18 +11,10 @@ module.exports = {
       pelicula_serie_asociada: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {
-          model: 'Pelicula_serie',
-          key: 'id'
-        }
       },
       personajeAsociada: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Personaje',
-          key: 'id'
-        }
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
