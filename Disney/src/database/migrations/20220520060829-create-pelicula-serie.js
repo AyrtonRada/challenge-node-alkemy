@@ -26,18 +26,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      personajesAsociados: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      genero_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'genero',
-          key: 'id'
-        }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

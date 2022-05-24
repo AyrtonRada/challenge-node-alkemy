@@ -14,10 +14,11 @@ module.exports = {
         unique: true
       },
       imagen: {
-        type: Sequelize.STRING
-      },
-      pelicula_serie: {
         type: Sequelize.STRING,
+        allowNull: false
+      },
+      pelicula_serie_asociada: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       createdAt: {

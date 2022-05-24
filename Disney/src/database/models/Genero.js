@@ -13,14 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Genero.hasMany(models.Pelicula_serie,{
           as: 'peliculas',
-          foreignKey: 'genero_id'
+          foreignKey: 'pelicula_serie_asociada'
       })
     }
   }
   Genero.init({
     nombre: DataTypes.STRING,
     imagen: DataTypes.STRING,
-    pelicula_serie: DataTypes.STRING
+    pelicula_serie_asociada: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Genero',

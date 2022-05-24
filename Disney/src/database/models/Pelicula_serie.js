@@ -13,14 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Pelicula_serie.belongsTo(models.Genero, {
           as: 'generos',
-          foreignKey: 'genero_id'
+          foreignKey: 'pelicula_serie_asociada'
       })
 
       Pelicula_serie.belongsToMany(models.Personaje, {
           as: 'personajes',
           through: 'personaje_detail',
-          foreignKey: 'pelicula_serie_id',
-          otherKey: 'personaje_id'
+          foreignKey: 'personajeAsociada',
       })
     }
   }
@@ -28,9 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     imagen: DataTypes.STRING,
     titulo: DataTypes.STRING,
     fechaDeCreacion: DataTypes.DATE,
-    calificacion: DataTypes.INTEGER,
-    personajesAsociados: DataTypes.STRING,
-    genero_id: DataTypes.INTEGER
+    calificacion: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Pelicula_serie',

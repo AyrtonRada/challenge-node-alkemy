@@ -8,19 +8,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      personaje_id: {
+      pelicula_serie_asociada: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'personaje',
+          model: 'Pelicula_serie',
           key: 'id'
         }
       },
-      pelicula_serie_id: {
+      personajeAsociada: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'pelicula_serie',
+          model: 'Personaje',
           key: 'id'
         }
       },

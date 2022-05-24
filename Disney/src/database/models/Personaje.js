@@ -14,8 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Personaje.belongsToMany(models.Pelicula_serie, {
           as:'pelicula_serie',
           through: 'personaje_detail',
-          foreignKey: 'personaje_id',
-          otherKey: 'pelicula_serie_id'
+          foreignKey: 'pelicula_serie_asociada',
       })
     }
   }
@@ -24,8 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     nombre: DataTypes.STRING,
     edad: DataTypes.INTEGER,
     peso: DataTypes.INTEGER,
-    historia: DataTypes.STRING,
-    pelicula_serie_asociada: DataTypes.STRING
+    historia: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Personaje',
