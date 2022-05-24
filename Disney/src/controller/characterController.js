@@ -82,17 +82,17 @@ const characterController = {
 
     /*********ELIMINAR PERSONAJE *********/
     search: async(req,res) => {
-        let {nombre, edad, peso, pelicula_serie_asociada} = req.query
+        let {name, age, weight, movie} = req.query
         await db.Personaje.findAll({
             where: {
                 [Op.or]: [{
-                    nombre: { [Op.like]: "%" + nombre + "%" },
+                    nombre: { [Op.like]: "%" + name + "%" },
                     },{
-                    edad: { [Op.like]: "%" + edad + "%" },
+                    edad: { [Op.like]: "%" + age + "%" },
                     },{
-                    peso:  { [Op.like]: "%" + peso + "%" },
+                    peso:  { [Op.like]: "%" + weight + "%" },
                     },{
-                    pelicula_serie_asociada:  { [Op.like]: "%" + pelicula_serie_asociada + "%" },
+                    pelicula_serie_asociada:  { [Op.like]: "%" + movie + "%" },
                 }]
             }
         })
