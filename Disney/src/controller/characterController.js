@@ -1,5 +1,6 @@
 const {validationResult} = require('express-validator')
 const db = require('../database/models/Index')
+const {Op} = require('sequelize')
 
 const characterController = {
 
@@ -69,15 +70,36 @@ const characterController = {
       })
     },
 
-     /*********ELIMINAR PERSONAJE *********/
-     charactersDestroy: async(req,res) => {
+    /*********ELIMINAR PERSONAJE *********/
+    charactersDestroy: async(req,res) => {
         await db.Personaje.destroy({
             where: {id: req.params.id}
         })
         .then(()=>{
             res.send(`Personaje con id: ${req.params.id} eliminado`)
         })
-     }
+    },
+
+    /*********ELIMINAR PERSONAJE *********/
+    search: async(req,res) => {
+        let {nombre, edad, peso, pelicula_serie_asociada} = req.query
+        await db.Personaje.findAll({
+            where: {
+                [Op.or]: [{
+                    nombre: { [Op.like]: "%" + nombre + "%" },
+                    },{
+                    edad: { [Op.like]: "%" + edad + "%" },
+                    },{
+                    peso:  { [Op.like]: "%" + peso + "%" },
+                    },{
+                    pelicula_serie_asociada:  { [Op.like]: "%" + pelicula_serie_asociada + "%" },
+                }]
+            }
+        })
+        .then((respuesta)=> {
+            res.json(respuesta)
+        })
+    }
 }
 
 module.exports = characterController

@@ -11,5 +11,6 @@ router.get('/detail', characterController.charactersDetail)
 router.post('/create', uploadFile.single('imagen'), validacionesCharacter, characterController.charactersCreate)
 router.put('/update/:id', uploadFile.single('imagen'), validacionesCharacter, characterController.charactersUpdate)
 router.delete('/delete/:id', characterController.charactersDestroy)
+router.get('/search', characterController.search)
 
 module.exports = router
