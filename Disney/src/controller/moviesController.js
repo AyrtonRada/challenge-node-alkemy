@@ -7,7 +7,10 @@ const movieController = {
     movies: async(req,res) => {
         await db.Pelicula_serie.findAll({ attributes: ["imagen", "titulo", "fechaDeCreacion"]})
         .then((personaje) => {
-            res.json(personaje)
+            res.status(200).json(personaje)
+        })
+        .catch(error =>{ 
+            res.status(404).send(error)
         })
     },
 
@@ -15,7 +18,10 @@ const movieController = {
     moviesDetail: async (req,res) => {
         await db.Pelicula_serie.findAll()
         .then((respuesta) => {
-            res.json(respuesta)
+            res.status(200).json(respuesta)
+        })
+        .catch(error =>{ 
+            res.status(404).send(error)
         })
     },
 
@@ -25,7 +31,7 @@ const movieController = {
         const errores = validationResult(req)
         
         if (errores.errors.length > 0 ) {
-            return res.send( {errors: errores.mapped()})
+            return res.status(400).send( {errors: errores.mapped()})
         }
 
         //crear un pelicula/serie
@@ -36,7 +42,10 @@ const movieController = {
             calificacion: req.body.calificacion
         })
         .then(()=> {
-            res.send('Pelicula/Serie creada')
+            res.status(201).send('Pelicula/Serie creada')
+        })
+        .catch(error =>{ 
+            res.status(400).send(error)
         })
     },
 
@@ -46,7 +55,7 @@ const movieController = {
       const errores = validationResult(req)
         
       if (errores.errors.length > 0 ) {
-          return res.send( {errors: errores.mapped()})
+          return res.status(400).send( {errors: errores.mapped()})
       }
 
       //editar personaje
@@ -59,8 +68,11 @@ const movieController = {
           where: {id: req.params.id}
       })
       .then(()=> {
-          res.send(`Pelicula/Serie con id: ${req.params.id} actualizada`)
+          res.status(201).send(`Pelicula/Serie con id: ${req.params.id} actualizada`)
       })
+      .catch(error =>{ 
+        res.status(400).send(error)
+    })
     },
     /*********ELIMINAR PERSONAJE *********/
     moviesDestroy: async(req,res)=>{
@@ -68,7 +80,10 @@ const movieController = {
             where: {id: req.params.id}
         })
         .then(()=>{
-            res.send(`Pelicula/Serie con id: ${req.params.id} eliminada`)
+            res.status(200).send(`Pelicula/Serie con id: ${req.params.id} eliminada`)
+        })
+        .catch(error =>{ 
+            res.status(404).send(error)
         })
     }
 

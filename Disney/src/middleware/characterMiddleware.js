@@ -25,9 +25,7 @@ const validacionesCharacter = [
         .isNumeric().withMessage('Sólo se permiten números'),
     body('historia')
         .notEmpty().withMessage('Escribe la historia')
-        .isLength({min:25}).withMessage("La historia debe tener al menos 25 caracteres"),
-    body('pelicula_serie_asociada')
-        .notEmpty().withMessage('Escribe la película o serie asociada')
+        .isLength({min:25}).withMessage("La historia debe tener al menos 25 caracteres")
 ]
 
 module.exports = validacionesCharacter

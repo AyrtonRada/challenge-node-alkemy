@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
       Pelicula_serie.belongsToMany(models.Personaje,{
         as: 'personajes',
         through: 'personaje_details',
-        foreignKey: 'personajeAsociada',
-        otherKey: 'pelicula_serie_asociada',
+        foreignKey: 'pelicula_serie_asociada',
+        otherKey: 'personajeAsociada',
         timestamps: true
       })
     }

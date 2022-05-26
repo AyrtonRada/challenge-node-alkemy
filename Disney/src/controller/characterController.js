@@ -9,15 +9,23 @@ const characterController = {
         //encontrar todos los personajes para mostrar imagen y nombre
          await db.Personaje.findAll({attributes:["imagen","nombre"]})
          .then((personaje)=> {
-            res.json(personaje)
+            res.status(200).json(personaje)
+         })
+         .catch(error =>{ 
+             res.status(404).send(error)
          })
     },
      /*********DETALLES DE LOS PERSONAJES *********/
 
     charactersDetail: async (req,res) => {
-        await db.Personaje.findAll()
+        await db.Personaje.findAll({
+            include:[{association:"pelicula_serie"}]
+        })
         .then((respuesta) => {
-            res.json(respuesta)
+            res.status(200).json(respuesta)
+        })
+        .catch(error =>{ 
+            res.status(404).send(error)
         })
     },
 
@@ -27,7 +35,7 @@ const characterController = {
         const errores = validationResult(req)
         
         if (errores.errors.length > 0 ) {
-            return res.send( {errors: errores.mapped()})
+            return res.status(400).send( {errors: errores.mapped()})
         }
 
         //crear un personaje
@@ -36,11 +44,13 @@ const characterController = {
             nombre: req.body.nombre,
             edad: req.body.edad,
             peso: req.body.peso,
-            historia: req.body.historia,
-            pelicula_serie_asociada: req.body.pelicula_serie_asociada
+            historia: req.body.historia
         })
         .then(()=> {
-            res.send('Personaje creado')
+            res.status(201).send('Personaje creado')
+        })
+        .catch(error =>{ 
+            res.status(400).send(error)
         })
     },
 
@@ -51,7 +61,7 @@ const characterController = {
       const errores = validationResult(req)
         
       if (errores.errors.length > 0 ) {
-          return res.send( {errors: errores.mapped()})
+          return res.status(400).send( {errors: errores.mapped()})
       }
 
       //editar personaje
@@ -60,14 +70,16 @@ const characterController = {
         nombre: req.body.nombre,
         edad: req.body.edad,
         peso: req.body.peso,
-        historia: req.body.historia,
-        pelicula_serie_asociada: req.body.pelicula_serie_asociada
+        historia: req.body.historia
       },{
           where: {id: req.params.id}
       })
       .then(()=> {
-          res.send(`Personaje con id: ${req.params.id} actualizado`)
+          res.status(201).send(`Personaje con id: ${req.params.id} actualizado`)
       })
+      .catch(error =>{ 
+        res.status(400).send(error)
+    })
     },
 
     /*********ELIMINAR PERSONAJE *********/
@@ -77,6 +89,9 @@ const characterController = {
         })
         .then(()=>{
             res.send(`Personaje con id: ${req.params.id} eliminado`)
+        })
+        .catch(error =>{ 
+            res.status(400).send(error)
         })
     },
 
@@ -91,13 +106,14 @@ const characterController = {
                     edad: { [Op.like]: "%" + age + "%" },
                     },{
                     peso:  { [Op.like]: "%" + weight + "%" },
-                    },{
-                    pelicula_serie_asociada:  { [Op.like]: "%" + movie + "%" },
-                }]
+                    }]
             }
         })
         .then((respuesta)=> {
-            res.json(respuesta)
+            res.status(200).json(respuesta)
+        })
+        .catch(error =>{ 
+            res.status(404).send(error)
         })
     }
 }

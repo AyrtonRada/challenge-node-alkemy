@@ -25,9 +25,19 @@ module.exports = (sequelize, DataTypes) => {
     pelicula_serie_asociada: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      foreignKey: true,
+      references: {
+        model: 'Personajes',
+        key: 'id'
+      }
     },
     personajeAsociada: {
       type: DataTypes.INTEGER,
+      foreignKey: true,
+      references: {
+        model: 'Pelicula_series',
+        key: 'id'
+      },
       allowNull: false,
     }}, {
     sequelize,
