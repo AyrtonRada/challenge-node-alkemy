@@ -5,10 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var authRouter = require('./routes/auth');
-var characterRouter = require('./routes/character')
-var movieRouter = require('./routes/movie')
-var personaje_detailRouter = require('./routes/personaje_detail')
+var authRouter = require('./routes/authRoute');
+var characterRouter = require('./routes/characterRoute')
+var movieRouter = require('./routes/movieRoute')
+var personaje_detailRouter = require('./routes/personaje_detailRoute')
 
 var app = express();
 

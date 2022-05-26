@@ -18,9 +18,10 @@ const characterController = {
      /*********DETALLES DE LOS PERSONAJES *********/
 
     charactersDetail: async (req,res) => {
-        await db.Personaje.findAll({
-            include:[{association:"pelicula_serie"}]
-        })
+        let id = req.params.id
+        await db.Personaje.findByPk(id,{
+            include:[{association:"pelicula_serie"}
+        ]})
         .then((respuesta) => {
             res.status(200).json(respuesta)
         })
@@ -97,7 +98,7 @@ const characterController = {
 
     /*********FILTRAR PERSONAJE *********/
     search: async(req,res) => {
-        let {name, age, weight, movie} = req.query
+        let {name, age, weight, idMovie} = req.query
         await db.Personaje.findAll({
             where: {
                 [Op.or]: [{
@@ -107,7 +108,8 @@ const characterController = {
                     },{
                     peso:  { [Op.like]: "%" + weight + "%" },
                     }]
-            }
+            },
+            include:[{association:"pelicula_serie"}]
         })
         .then((respuesta)=> {
             res.status(200).json(respuesta)

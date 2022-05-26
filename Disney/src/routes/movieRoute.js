@@ -6,7 +6,8 @@ const validacionesMovie = require('../middleware/movieMiddleware')
 
 //localhost:3000/movies
 router.get('/', movieController.movies)
-router.get('/detail', movieController.moviesDetail)
+router.get('/detail/:id', movieController.moviesDetail)
+router.get('/search', movieController.search)
 router.post('/create',uploadFile.single('imagen'), validacionesMovie,  movieController.moviesCreate)
 router.put('/update/:id', uploadFile.single('imagen'),validacionesMovie,  movieController.moviesUpdate)
 router.delete('/delete/:id', movieController.moviesDestroy)
