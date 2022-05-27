@@ -3,7 +3,7 @@ const dotenv = require('dotenv')
 
 dotenv.config()
 const secretKey = process.env.SECRETKEY || 'CLAVESECRETA'
-const verificarToken = (req,res)=> {
+const verificarToken = (req,res,next)=> {
 
     let token = req.headers['access-token']
 
@@ -16,6 +16,8 @@ const verificarToken = (req,res)=> {
     jwt.verify(token, secretKey, async(err,decoded)=>{
         if(err){
             res.send('Acceso denegado, su token caducó o es incorrecto')
+        }else{
+            next()
         }
     })
 }

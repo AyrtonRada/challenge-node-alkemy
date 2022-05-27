@@ -2,7 +2,7 @@ const {validationResult} = require('express-validator')
 const db = require('../database/models/Index')
 const {Op} = require('sequelize')
 
-const movieController = {
+const movieAPIController = {
     /*********LISTA DE PELICULAS/SERIES *********/
     movies: async(req,res) => {
         await db.Pelicula_serie.findAll({ attributes: ["imagen", "titulo", "fechaDeCreacion"]})
@@ -110,4 +110,4 @@ const movieController = {
     }
 }
 
-module.exports = movieController
+module.exports = movieAPIController

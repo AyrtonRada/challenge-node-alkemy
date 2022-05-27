@@ -2,7 +2,7 @@ const {validationResult} = require('express-validator')
 const db = require('../database/models/Index')
 const {Op} = require('sequelize')
 
-const characterController = {
+const characterAPIController = {
 
      /*********LISTA DE PERSONAJES *********/
     characters: async (req,res) => {
@@ -120,4 +120,4 @@ const characterController = {
     }
 }
 
-module.exports = characterController
+module.exports = characterAPIController

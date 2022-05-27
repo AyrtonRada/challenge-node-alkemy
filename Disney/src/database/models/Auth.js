@@ -14,9 +14,20 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Auth.init({
-    nombreUsuario: DataTypes.STRING,
-    email: DataTypes.STRING,
-    contraseña: DataTypes.STRING
+    nombreUsuario:{ 
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    email: { 
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    contraseña: { 
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Auth',

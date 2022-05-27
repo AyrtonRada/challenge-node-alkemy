@@ -9,7 +9,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 dotenv.config()
 const secretKey = process.env.SECRETKEY || 'CLAVESECRETA'
 
-const authController = {
+const authAPIController = {
 
     /********* REGISTRAR USUARIO *********/
     registerProcess: async (req, res) => {
@@ -81,4 +81,4 @@ const authController = {
             }           
     }
 }
-module.exports = authController
+module.exports = authAPIController

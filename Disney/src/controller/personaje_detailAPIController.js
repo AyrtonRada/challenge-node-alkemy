@@ -2,7 +2,7 @@ const {validationResult} = require('express-validator')
 const db = require('../database/models/Index')
 
 
-const personaje_detailController = {
+const personaje_detailAPIController = {
     /*********LISTA DE PELICULAS/PERSONAJES *********/
     personaje_detail: async(req,res)=>{
         await db.Personaje_detail.findAll({
@@ -27,8 +27,8 @@ const personaje_detailController = {
 
         //crear la asociacion entre pelicula/personaje
         await db.Personaje_detail.create({
-            pelicula_serie_asociada: req.params.idMovie,
-            personajeAsociada: req.params.idCharacter
+            pelicula_serie_asociada: req.body.idMovie,
+            personajeAsociada: req.body.idCharacter
         })
         .then(()=> {
             res.status(201).send('Asociacion realizada con éxito')
@@ -49,8 +49,8 @@ const personaje_detailController = {
 
        //editar pelicula/personaje
         await db.Personaje_detail.update({
-            pelicula_serie_asociada: req.params.idMovie,
-                personajeAsociada: req.params.idCharacter
+            pelicula_serie_asociada: req.body.idMovie,
+                personajeAsociada: req.body.idCharacter
         },{
             where: {id: req.params.id}
         })
@@ -64,4 +64,4 @@ const personaje_detailController = {
     
 }
 
-module.exports = personaje_detailController
+module.exports = personaje_detailAPIController

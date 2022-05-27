@@ -21,8 +21,11 @@ module.exports = (sequelize, DataTypes) => {
     nombre: {type: DataTypes.STRING,
             allowNull: false},
     imagen: { type: DataTypes.STRING},
-    pelicula_serie_asociada: {type: DataTypes.INTEGER,
-            allowNull: false}
+    pelicula_serie_asociada: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            foreignKey: true
+    }
   }, {
     sequelize,
     modelName: 'Genero',

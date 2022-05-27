@@ -23,10 +23,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/auth', authRouter);
-app.use('/characters', characterRouter)
-app.use('/movies', movieRouter)
-app.use('/associations', personaje_detailRouter)
+app.use('/api/auth', authRouter);
+app.use('/api/characters', characterRouter)
+app.use('/api/movies', movieRouter)
+app.use('/api/associations', personaje_detailRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
