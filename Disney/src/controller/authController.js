@@ -3,6 +3,8 @@ const bcryptjs = require('bcryptjs')
 const db = require('../database/models/Index')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 dotenv.config()
 const secretKey = process.env.SECRETKEY || 'CLAVESECRETA'
@@ -24,7 +26,7 @@ const authController = {
             })
 
         if (userInDb) {
-            return res.status(200).send('Este email ya está registrado')
+            return res.send('Este email ya está registrado')
         }
 
         //registrara el usuario
@@ -33,9 +35,25 @@ const authController = {
             email: req.body.email,
             contraseña: bcryptjs.hashSync(req.body.contraseña)
             })
-        return res.status(200).send('Usuario creado')
+            //envio de bienvenida al email registrado
+            .then( (respuesta)=> {
+                let msg = {
+                    to: respuesta.email, 
+                    from: 'alkemy@challenge.com', 
+                    subject: 'Registro en Challenge Alkemy',
+                    text: 'Bienvenido ' + respuesta.nombreUsuario,
+                    html: '<strong>Gracias por registrarte!!</strong>',
+                  }
+                  sgMail.send(msg)
+            })
+            .then(()=> {
+                return res.status(200).send('Usuario creado')
+            })
+            .catch((error) => {
+                res.status(400).send(error)
+            })
     },
-
+    
     /********* LOGUEAR USUARIO *********/
     loginProcess: async (req, res) => {
             //validacion de existencia de los datos para logear

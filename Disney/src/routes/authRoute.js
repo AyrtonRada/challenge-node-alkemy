@@ -4,17 +4,12 @@ const authController = require('../controller/authController')
 const validacionesRegister = require('../middleware/authRegisterMiddleware')
 const validacionesLogin = require('../middleware/authLoginMiddleware')
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
 /******user login y register******/
 
-//localhost:3000/auth/register
+//localhost:3000/auth
 router.post('/register', validacionesRegister, authController.registerProcess)
 
-//localhost:3000/auth/login
+//localhost:3000/auth
 router.post('/login',validacionesLogin, authController.loginProcess)
 
 module.exports = router;

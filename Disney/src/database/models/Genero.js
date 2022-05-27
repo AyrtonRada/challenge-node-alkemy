@@ -19,10 +19,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Genero.init({
     nombre: {type: DataTypes.STRING,
-            allowNull: false,
-            unique: true},
-    imagen: { type: DataTypes.STRING,
             allowNull: false},
+    imagen: { type: DataTypes.STRING},
     pelicula_serie_asociada: {type: DataTypes.INTEGER,
             allowNull: false}
   }, {

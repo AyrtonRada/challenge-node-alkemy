@@ -92,7 +92,7 @@ const movieController = {
 
     /*********FILTRAR PELICULA/SERIE *********/
     search: async(req,res) => {
-        let {title, order} = req.query //*order === ASC|DESC
+        let {title, order} = req.query //*order === ASC||DESC
         await db.Pelicula_serie.findAll({
             where: {
                 [Op.or]: [{
